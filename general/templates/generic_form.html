@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div data-role="page"></div><!--  the null <page> is to avoid causing "_trigger" error of Jquery UI -->
+  <form action="{{action}}" method="post" autocomplete=off>
+    <table>
+    {{form.as_table}}
+    </table>
+    <input type="submit" value="submit">
+  </form>
+  {% for pro_tag in promotedTags %}
+  <div id = promotedtag>
+  <hgroup>
+  <h2>{{pro_tag.tag.verbosename}}</h1>
+  <h2>{{pro_tag.orderid}}</h2>
+  </hgroup>
+  </div>
+  {% endfor %}
+{% endblock %}

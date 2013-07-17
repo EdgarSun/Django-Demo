@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	    <title>{% block title %}OpenWebGL{% endblock %}</title>
+	    <meta name="Description" content="" /> 
+		<meta name="Keywords"  content="" /> 
+	    <!--[if lt IE 9]><script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script><![endif]-->
+	    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/login.css" />
+		<!-- Google Analytics  -->
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-6960742-4']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+	</head>
+	<body>
+		<div id=container data-redirect-url="{{next}}" >
+			<header>
+			<hgroup id=title>
+				<h1><p class=open>Open</p><p>WebGL</p></h1>
+			</hgroup>
+			
+			</header>
+			<form action=/account/login/ method=post class=clearfix  autocomplete=off>
+			<input type=HIDDEN name="redirect" id="id_redirect" value="{{next}}">
+			<hgroup id=form class=clearfix>
+				<h2><input type="text" name="email" id="id_email"  placeholder=Email></h2>
+			</hgroup>
+			<hgroup id=form class=clearfix>
+				<h2><input type="password" name="password" id="id_password" placeholder=Password></h2>
+			</hgroup>
+			<input type="submit" value="Login">
+			<!--  <table>{{form.as_table}}</table> -->
+			</form>
+			<footer>
+				<p>© OpenWebGL 2011 <a href="mailto:edgar.sun@openwebgl.com">Get an invitation code</a></p>
+			</footer>
+		</div>
+	</body>
+</html>

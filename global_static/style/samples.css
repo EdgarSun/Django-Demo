@@ -1,0 +1,10 @@
+#beyond-canvas {
+	border: none;
+	background-color:black;
+	margin: 0 auto;
+}
+#hotkey{
+	width: 304px;
+	height: 72px;
+	background: url(/media/images/samples/key.jpg) no-repeat;
+}

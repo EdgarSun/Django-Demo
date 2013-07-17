@@ -1,0 +1,5 @@
+{% load filetransfers %}
+<form id=id-upload-form action="{{ upload_url }}" method="POST"  pk={{pk}} src={{resource_url}} thumbnail={{thumbnail_url}} enctype="multipart/form-data">
+  <input type="file" name="file" id="id_file" class=g2 />
+  <input type="submit" value="Upload" class=g2 />
+</form>

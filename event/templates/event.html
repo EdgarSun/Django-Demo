@@ -1,0 +1,31 @@
+{% load dateTime_extras %}
+<div id=retrieving-event-states data-is-null={{is_null}} data-latest-updated-entity-date="{{latest_updated_entity_date}}" ></div>
+{% for entity in  entity_list %}
+	{%ifequal entity|stringformat:"s" "micronote" %}
+		<div id=global-edge-container class= "micronote clearfix" style="display: none; "><!-- hide retrieving entities before wrapping  -->
+	        <article id=micronote class=clearfix>
+		        <div id=global-edge-container class=avatar style="background: url({{MEDIA_URL}}images/users_avatar/{{entity.object.author.get_profile.avatar}}_50.jpg) no-repeat">
+				</div>
+				<h1><a class=r1 href=#>{{entity.object.author.get_full_name}}</a><p>{{entity.object.content}}</p></h1>
+				<h2>{{entity.object.pub_date}} real {{ entity.object.pub_date|pretty_datetime}} via {{entity.object.get_platform_display}}</h2>
+				<h3><a id="micronote-viewcomment-{{entity.object_id}}" 
+				class=inactive data-mode=event data-entity-id="{{entity.object_id}}" data-entity-type={{entity}} data-latest-updated-comment-date={{atest_updated_comment_date}} href=#>{% ifnotequal entity.object.comment_count 0 %}{{entity.object.comment_count}}{% endifnotequal %}</a></h3>
+			</article>
+			<article id=comments-{{entity.object_id}} class=clearfi ></article>
+			</div>
+		</div>
+	{% endifequal %}
+	{%ifequal entity|stringformat:"s" "comment" %}
+		<div id=global-edge-container class= "micronote-comment clearfix"  data-ignore-height={{ignore_height}} >
+	        <article id=micronote class=clearfix>
+		        <div id=global-edge-container class=comment-avatar style="background: url({{MEDIA_URL}}images/users_avatar/{{entity.author.get_profile.avatar}}_25.jpg) no-repeat">
+				</div>
+				<h1><a class=r1 href=#>{{entity.author.get_full_name}}</a><p>{{entity.content}}</p></h1>
+				<h2>{{ entity.pub_date|pretty_datetime}} via {{entity.platform}}</h2>
+				<h3><a id="micronote-viewcomment-{{entity.id}}" 
+				class=inactive data-parent={{parent_id}} data-mode=comment data-entity-id="{{entity.id}}" data-entity-type=micronote data-latest-updated-comment-date={{latest_updated_comment_date}} href=#>{% ifnotequal entity.comment_count 0 %}{{entity.comment_count}}{% endifnotequal %}</a></h3>
+			</article>
+			<article id=comments-{{entity.id}} class=clearfi ></article>
+		</div>
+	{% endifequal %}
+{% endfor %}

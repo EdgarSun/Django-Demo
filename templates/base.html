@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	    <title>{% block title %}OpenWebGL{% endblock %}</title>
+	    <meta name="Description" content="" /> 
+		<meta name="Keywords"  content="" />
+		
+		<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/main.css" />
+		
+	    <!--[if lt IE 9]><script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script><![endif]-->
+	    <script src='/_ah/channel/jsapi'></script>
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.6.2.min.js"></script>
+ 		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.16.custom.min.js"></script>
+<!--  		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.easing.1.3.js"></script> -->
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/underscore-min.js"></script>
+ 		<script type="text/javascript" src="{{ STATIC_URL }}scripts/backbone-min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.json-2.2.min.js"></script>
+
+		
+<!-- 		<script src="https://www.google.com/jsapi?key=ABQIAAAATOJaTmto9aCTso89-QXVsxTkXl70cARHNibre1ohKklds3D4DBRAV5ck0VOXdnxYlyQOdXnGIH5suw" type="text/javascript"></script>-->
+
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/base-initial.js"></script>
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/base-models.js"></script>
+<!-- 	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.comfirm.js"></script> -->
+  
+	    
+	     {% block header %}{% endblock %}
+		<!-- Google Analytics  -->
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-6960742-4']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+</head>
+	<body>
+	<header id=main-header class=clearfix data-host="{{ host_name }}">
+		<div id=main-header-container class=clearfix>
+			<div id=searchform class=clearfix >
+			<textarea id=opensearch name=searchvalue placeholder="What's happening?"  ></textarea>
+			{% if isMicronoteValid %}
+			<button id=addMicronoteButton ></button>
+			{% endif %}
+			<button id=searchButton type=submit ></button>
+			</div>
+			<hgroup>
+		 		<h1>
+		 		<a href='/' title=OpenWebGL>OpenWebGL</a>
+		 		</h1>
+		 	</hgroup>
+			<nav  class="global-nav header">
+					{% if user.is_authenticated %}
+					<button id=account_btn class=g0 href=# >{{ user.first_name }}.{{ user.last_name }}</button><!-- "/account/logout/" -->
+					{% else  %}
+					<button id=login_btn class=g0 href="/account/login/">Login</button>
+					
+					{% endif %}
+			</nav>
+		</div>
+		<div id=preview-form-micronote class=preview-form data-isProcessing=false> <!-- isProcessing: avoid retrieving urlShortener twice -->
+			<div class=border></div>
+			<div class=label>preview</div>
+			<div class=length>140</div>
+		</div>
+		<div id=preview-form-tagging-menu  class="preview-form" >
+			<div class="border clearfix" ></div>
+			<nav id=post-comment-id class="global-nav tagging-menu">
+				<button class=g1_comment href=# data-tag-id=-1 data-mode=add ><p class=post-comment-label>COMMENT</p><p id=post-comment-content ></p></button>
+			</nav>
+			<nav id=post-micronote-id class="global-nav tagging-menu" >
+			<h1>New Post</h1>
+				<button class=g1_tag href=# data-tag-id=0 data-mode=add >General</button>
+				{% for pro_tag in  entirePromotedTags %}
+				<button class=g1_tag href=# data-tag-id={{pro_tag.tag.id}} data-mode=add >{{pro_tag.tag.verbosename}}</button>
+				{% endfor %}
+			</nav>
+	
+			<nav id=retrieve-micronote-id class="global-nav tagging-menu" >
+				{% for pro_tag in  promotedTags %}
+				<button class=g1_tag href=# data-tag-filter = {{pro_tag.tag.id}} data-mode=retrieve >{{pro_tag.tag.verbosename}}</button>
+				{% endfor %}
+			</nav>
+			
+			<nav id=account-id class="global-nav tagging-menu" >
+				<button class=g1_tag href=# data-tag-id=2 data-mode=account >Showcase Editor</button>
+				<button class=g1_tag href=# data-tag-id=0 data-mode=account >Settings</button>
+				<button class=g1_tag href=# data-tag-id=1 data-mode=account >Sign out</button>
+			</nav>
+		</div>
+	 </header>
+	
+	<div id=main-container class=clearfix>
+		 {% block content %}{% endblock %}
+	</div>
+
+	<footer id=main-footer>
+		<section id=footer-column-left class=clearfix>
+				
+				<nav id=footer-nav >
+					<ul>
+						<li><p>© OpenWebGL 2011 Powered by: </p></li>
+						<li><a class=g2 href=#></a></li>
+<!-- 						<li><a class=g1 href=#></a></li> -->
+					</ul>
+				</nav>
+		</section>
+		<script id="aptureScript">
+		(function (){var a=document.createElement("script");a.defer="true";a.src="http://www.apture.com/js/apture.js?siteToken=BBEE25F";document.getElementsByTagName("head")[0].appendChild(a);})();
+		</script>
+	</footer>
+</body>
+</html>

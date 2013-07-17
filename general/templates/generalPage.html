@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+ {% block header %}
+	    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/eventView.css" />
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/kinetic2d-v1.0.0.js"></script>
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/events.js"></script>
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/micronote.js"></script>
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/showcase_canvas.js"></script>
+ {% endblock %}
+
+{% block content %}
+<div id=main-column-left>
+		<section id=global-section class=event>
+			<header id=event-header class="global-header clearfix">
+				<nav id=event-tags class=global-nav >
+						<button class="g1" href="#" data-tag-filter="0">General</button>
+						{% for pro_tag in  promotedStarTags%}
+						<button id=event-tag class=g1 href=# data-tag-filter = {{pro_tag.tag.id}}>{{pro_tag.tag.verbosename}}</button>
+						{% endfor %}
+						<button class="g1" href="#" data-tag-filter="-1">...</button>
+				</nav>
+			</header>
+			
+			<div id=event-container-id class="event-view-v clearfix" >
+			</div><!-- /event-view-v -->
+			<nav class=global-nav>
+				<button class="g7" href="#" onclick="NextEventPage();">next page</button>
+			</nav>
+			<footer id=event-footer-id class="global-footer event">
+			</footer>
+  		</section>
+		</div>
+		<div id=main-column-central>
+		<section id=global-section class=showcase>
+			<header id=showcase-header class="global-header clearfix">
+				<nav class=global-nav>
+						{% for pro_tag in  promotedCategoryTags%}
+						<button class=g2 href=# data-id = {{pro_tag.tag.id}}>{{pro_tag.tag.verbosename}}</button>
+						{% endfor %}
+				</nav>
+			</header>
+			<canvas id=showcase-canvas width="440" height='321' ></canvas>
+			<footer id=showcase-footer class="global-footer showcase">
+				<nav class=global-nav>
+					<button class=g3 href=# >Get More</button>
+				</nav>
+			</footer>
+		</section>
+		<section id=global-section class=recommend>
+			<header id=recom-header class="global-header clearfix">
+				<nav class=global-nav>
+						<button class=g2 href=#>Recommendations</button>
+				</nav>
+			</header>
+			<div id=global-edge-container class="recommend clearfix">
+				<article id=recommend>
+					<h1><a class=r1 href=#>21 Ridiculously Impressive HTML5 Canvas Experiments</a> </h1>
+					<h2>HTML5 is the thing to talk about these day. Today, we have a collection of some ridiculously impressive HTML5 canvas-based experiments that will make you say, take a peek at some of the latest, cutting edge examples out there.</h2>
+					<h3><a href=#>214 Like</a></h3>
+					<h3><a href=#>Delist</a></h3>
+					<h4><a href=#>19 (VIP 5)</a></h4>
+				</article>
+			</div>
+			<div id=global-edge-container class="recommend clearfix">
+				<article id=recommend>
+					<h1><a class=r1 href=#>Fun With Canvas: Create a Bar Graphing Plugin, Part 1</a> </h1>
+					<h2>In this two-part series, we l combine the versatile canvas element with the robust jQuery library to create a bar graphing plugin. In this first part, we are going to code the core logic of the plugin as a standalone version.</h2>
+					<h3><a href=#>768 Like</a></h3>
+					<h3><a href=#>Delist</a></h3>
+					<h4><a href=#>213 (VIP 12)</a></h4>
+				</article>
+			</div>
+			<div id=global-edge-container class="recommend clearfix">
+				<article id=recommend>
+					<h1><a class=r1 href=#>Getting Started with CouchDB</a> </h1>
+					<h2>NoSQL has been one of the most talked about topics over the past couple of months. This tutorial will introduce you to CouchDB, a NoSQL implementation and teach you how to get started with the platform.</h2>
+					<h3><a href=#>105 Like</a></h3>
+					<h3><a href=#>Delist</a></h3>
+					<h4><a href=#>46 (VIP 8)</a></h4>
+				</article>
+			</div>
+		</section>
+		</div>
+		<div id=main-column-right>
+			<section id=global-section class=announcement>
+				<hgroup id=announcement>
+					<h1>Create a Tutorial, Translate an Article, Make an Awesome Idea, Get Paid!</h1>
+					<h2>Have something to teach the world? Want to earn money doing it? Tutorials, screencasts, and articles published here on OpenWebGL are largely contributed by readers just like you! We'll pay you great money for good content.</h2>
+				</hgroup>
+				<nav class=global-nav>
+					<button class=g3 href=# >Find Out More</button>
+				</nav>
+			</section>
+		</div>
+{% endblock %}

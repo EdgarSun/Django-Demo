@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+ {% block header %}
+	    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/showcase.css" />
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/showcase.js"></script>
+ {% endblock %}
+
+{% block content %}
+<div id=showcase-left class=clearfix>
+
+</div>
+
+<div id=showcase>
+	<nav class="global-nav">
+	<input type=HIDDEN name="entityID" id="id-entity" value="" />
+	<input type=HIDDEN name="entityID" id="id-slug-input" value="" />
+	<div class=generic-title >{{showcase.content}}</div>
+	<div class=author-container>Editor : {{showcase.author.get_full_name}}</div>
+	<div id=id-resource-container>
+		<div id=id-image style="background-image: url({{showcase.resource.1}})"></div>
+		<div id=id-image-container class=clearfix>
+			<!-- some temporary transfering resource data will be kept here, it will be removed after initializing resource instance via backbone.js -->
+			{% for resource in  showcase.resource%}
+				<input type=HIDDEN class=avatar id="id-resource-entity" value="{{resource}}" />
+			{% endfor %}
+			<!-- <div id=global-edge-container  class=avatar></div> -->
+		</div>
+	</div>
+	<div id=id-tag-container>
+		<div class=generic-editor-title >Tags</div>
+			<div id=id-tags-list>
+				{% for tag in  showcase.tag_list%}
+				<input type=HIDDEN class=tag  id="id-tag-entity" value="{{tag}}" />
+				{% endfor %}
+					<!-- <button  class=g2 ><p>{{tag}}</p></button> -->
+			</div>
+	</div>
+	
+	<div class=generic-description >{{showcase.description}}</div>
+	<div class=generic-editor-title >Additional Links</div>
+		<div id=id-links-list>
+			{% for link in  showcase.link_list%}
+				<input type=HIDDEN class=link id="id-link-entity" value="{{link}}" />
+			{% endfor %}
+			<!-- example: <button  class=g2 ><p>WebGL</p><div id=id-close-button>x</div></button> -->
+		</div>
+	<div class=generic-editor-title >Category</div>
+	<div id=id-category-container>
+			<button id=id-category-button class="g6" href="#" >External Demo</button>
+	</div>
+	</nav>
+</div>
+<div id=showcase-right class=clearfix>
+
+</div>
+{% endblock %}

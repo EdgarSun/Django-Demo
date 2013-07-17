@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+ {% block header %}
+	    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/showcase.css" />
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/showcase.js"></script>
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/showcase_editor.js"></script>
+	    
+	    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.form.js"></script>
+ {% endblock %}
+
+{% block content %}
+<div id=showcase-left class=clearfix>
+<nav class="global-nav">
+	<div id=id-generic-container class=clearfix>
+		<button id=id-create-showcase class="g0-large" href="#" >Create Showcase</button>
+		<section id=id-unpublished-section>
+			<div class=generic-editor-title >Unpublished Entities</div><div id=id-unpublished-count class=generic-editor-title >(0)</div>
+			<div id=id-unpublished-showcase-container class='showcase-container clearfix'>
+				<!-- <div id=id-showcase-entity entityID='' class=clearfix>
+					<h1>there is no valid entity to show</h1>
+					<h2>Delete</h2>
+					<h2>Edit</h2>
+				</div> -->
+				<!-- store all unpublished entities -->
+			</div>
+		</section>
+		<section id=id-published-section>
+			<div class=generic-editor-title >Published Entities </div><div id=id-published-count class=generic-editor-title >(0)</div>
+			<div id=id-published-showcase-container class='showcase-container clearfix'>
+				<!-- store all published entities -->
+			</div>
+		</section>
+	</div>
+</nav>
+</div>
+
+<div id=showcase>
+<nav class="global-nav">
+	<div class=generic-editor-title >Title</div>
+	<input type=HIDDEN name="entityID" id="id-entity" value="" />
+	<input type="text" name="title" id=id-content class='generic-field generic-input'' autofocus />
+	<button id=id-accept-title class="g0-large" href="#" >Next</button>
+	<!-- below content will be appended to the end of inner showcase -->
+	<div id=id-main-content>
+		<div id=id-slug class=slug >Slug: hello-world-webgl-is-awesome</div>
+		<div class=generic-editor-title >Description</div>
+		<textarea id="id-description" class=generic-field name="searchvalue" placeholder="Share something amazing with us..." ></textarea>
+		<div id=id--tag-container>
+			<div class=generic-editor-title >Tags</div>
+			<input type="text" name="title" id=id-tag class='generic-field generic-input'' placeholder='press enter to add tag'/>
+			<div id=id-tags-list>
+				<!-- example: <button  class=g2 ><p>WebGL</p><div id=id-close-button>x</div></button> -->
+			</div>
+		</div>
+		<div class=generic-editor-title >Upload Resource</div>
+		<div id=id-resource-container>
+			<div id=id-image>No Picture Yet!</div>
+			<div id=id-upload-container>
+			<!-- upload form will be appended here -->
+			</div>
+			<div id=id-image-container class='ui-sortable clearfix'>
+	
+			<!-- <div id=global-edge-container  class=avatar></div> -->
+	
+			</div>
+		</div>
+		<div class=generic-editor-title >Links</div>
+		<input type="text" name="title" id=id-link class='generic-field generic-input'' placeholder='press enter to add link <i.e. website title http://>'/>
+		<div id=id-links-list>
+			<!-- example: <button  class=g2 ><p>WebGL</p><div id=id-close-button>x</div></button> -->
+		</div>
+		<div class=generic-editor-title >Category</div>
+		<div id=id-category-container>
+				<button id=id-category-button class="g6" href="#" >External Demo</button>
+		</div>
+	</div>
+</nav>
+</div>
+<div id=showcase-right class=clearfix>
+<nav class="global-nav">
+		<div id=id-command-container class=clearfix>
+				<button id=id-save-button class="g0-large" href="#" >Save</button>
+				<button id=id-publish-button class="g0-large" href="#" >Publish</button>
+		</div>
+</nav>
+</div>
+{% endblock %}

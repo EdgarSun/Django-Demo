@@ -1,0 +1,54 @@
+application: openwebgl
+version: 9
+runtime: python
+api_version: 1
+
+builtins:
+- remote_api: on
+
+inbound_services:
+- warmup
+
+handlers:
+- url: /_ah/queue/deferred
+  script: djangoappengine/deferred/handler.py
+  login: admin
+
+- url: /_ah/stats/.*
+  script: djangoappengine/appstats/ui.py
+
+- url: /media/admin
+  static_dir: django/contrib/admin/media
+  expiration: '0'
+
+- url: /.*
+  script: djangoappengine/main/main.py
+  secure: optional
+  
+- url: /account/.*
+  script: account/views.py
+  secure: optional
+  
+- url: /tag/.*
+  script: tagging/views.py
+  login: required
+  
+- url: /event/.*
+  script: event/views.py
+  login: required
+  
+- url: /micronote/.*
+  script: micronote/views.py
+  login: required
+  
+- url: /comment/.*
+  script: micronote/views.py
+  login: required
+  
+- url: /showcase/.*
+  script: showcase/views.py
+  login: required
+  
+- url: /upload/.*
+  script: google_dependency/blobstore_handler.py
+  login: required

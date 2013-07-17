@@ -1,0 +1,18 @@
+{% load dateTime_extras %}
+[
+{% for entity in  entity_list %}
+
+{
+authorID: {{entity.object.author.id}},
+authorName: {{entity.object.author.get_full_name}},
+commentCount: entity.object.comment_count,
+content: {{entity.object.content}},
+eventID: {{entity.id}}
+index: 0,
+pubDate: {{ entity.object.pub_date}},
+tagID: {{entity.tag_id}},
+verbosePubDate:  {{ entity.object.pub_date|pretty_datetime}}
+},
+
+{% endfor %}
+]
